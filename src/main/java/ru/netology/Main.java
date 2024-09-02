@@ -38,10 +38,17 @@ public class Main {
                 System.out.println(text.substring(0, 100) + " -> " + maxSize);
             };
             thread = new Thread(logic);
-            thread.start();
-
+            threads.add(thread);
         }
-        thread.join();
+
+        for (Thread thread1 : threads){
+            thread1.start();
+        }
+
+        for (Thread thread1 : threads){
+            thread1.join();
+        }
+
         long endTs = System.currentTimeMillis(); // end time
         System.out.println("Time: " + (endTs - startTs) + "ms");
     }
